@@ -18,6 +18,9 @@ Studying basic concept of FastAPI &amp; uv
 
 # How to Start
 
+처음으로 해야 할 일은 `uv`를 설치하는 것입니다.
+`uv`에 대해서는 [<u> uv 가이드</u>](./Guide_uv.md)에서 더 자세히 확인하실 수 있습니다.
+
 ## Linux 실행환경 구성
 ```bash
 bash resources/setup.sh
@@ -41,12 +44,6 @@ python main_prep.py debug -tdir=ppt_samples/ -sdir=ppt_results/ -format=ppt,pptx
 ## 모듈 코어 함수 실행하기
 함수로 제공되는 ppt 전처리 모듈은 PreproPpt 함수명으로 제공하고 있으며, 이 함수는 전달받은 파라미터에 따라 PPTX 파일을 분석하고, 각 페이지 단위로 TEXT 파일을 생성하는 Python 함수입니다.
 
-해당 함수는 filepath에 전달하는 폴더 내에 있는 ppt/pptx 파일을 전처리해서 save_dir에 저장하는 함수입니다. 주요 파라미터들은 2.1 챕터를 확인하시기 바랍니다.
-
-이때 TEXT 파일의 포맷은 unix, plain, latex 등의 포맷을 사용할 수 있으며, 원하는 포맷을 table_prepro 파리미터에 전달하면 해당 포맷으로 저장됩니다.
-
-해당 함수의 Return 정보는 Infos, error_file_list, error_slide_dict이나, 함수의 주 결과는 save_dir 폴더 내에 저장되는 TXT 파일들입니다.
-
 ```sh
 from prepro_ppt import PreproPpt
  
@@ -66,7 +63,6 @@ infos, error_file_list, error_slide_dict = PreproPpt(filepath='ppt_samples/',
 ### 소스 외부 (Parsing Rule)
 - 모든 shape 객체 사이에는 "\n\n" 구분자가 append 되어, 파싱 단위가 분간됨.
 - 클러스터링, 권역, 제목&소제목 파싱 후에도 마찬가지로 "\n\n" 구분자가 따라붙어 결과적으로 상기한 특정 로직 수행 후에는 "\n\n\n" 구분자 파싱 후 다음 shape 객체가 파싱됨.
-- 예시
 ```
 OLED 설계 변경
 불량 개선을 위해, 보호 막 형성 (XX 모델 참조)
