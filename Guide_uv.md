@@ -70,3 +70,44 @@ Creating virtual environment at: .venv
 Hello from emberground!
 C:\work\emberground>
 ```
+2, 3번째 Line은 파이썬 설치&가상환경 생성을 최초로 실행할 때만 출력되는 로그 메시지로, 이후에 다시 `main.py`를 실행할 때에는 출력되지 않습니다.
+
+## 패키지 관리
+패키지를 하나 설치해봅니다. `requests` 라는 패키지를 설치하려면, 원래는 `pip install requests`로 실행해야 했습니다. 이제는 `uv add requests` 로 동일하게 가능합니다.
+```
+C:\work\emberground> uv add requests
+Resolved 6 packages in 163ms
+Installed 5 packages in 69ms
+ + certifi==2025.1.31
+ + charset-normalizer==3.4.1
+ + idna==3.10
+ + requests==2.32.3
+ + urllib3==2.4.0
+C:\work\emberground>
+```
+
+`pyproject.toml` 파일을 열어보면, 아래처럼 `requests` 패키지가 추가된 것을 확인할 수 있습니다.
+```
+[project]
+name = "emberground"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "requests>=2.32.3",
+]
+```
+
+`main.py` 파일을 열어 아래와 같이 작성해봅니다.
+```
+import requests
+
+def main():
+    resp = requests.get("https://peps.python.org/api/peps.json")
+    data = resp.json()
+    print(data)
+
+if __name__ == "__main__":
+    main()
+```
