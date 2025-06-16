@@ -45,15 +45,16 @@ python main_prep.py debug -tdir=ppt_samples/ -sdir=ppt_results/ -format=ppt,pptx
 함수로 제공되는 ppt 전처리 모듈은 PreproPpt 함수명으로 제공하고 있으며, 이 함수는 전달받은 파라미터에 따라 PPTX 파일을 분석하고, 각 페이지 단위로 TEXT 파일을 생성하는 Python 함수입니다.
 
 ```sh
-from prepro_ppt import PreproPpt
- 
-infos, error_file_list, error_slide_dict = PreproPpt(filepath='ppt_samples/',
-                                                     table_prepro='unix',
-                                                     fileformat=('ppt', 'pptx'),
-                                                     page_num=-1,
-                                                     save_dir='results/240103/',
-                                                     save_per_slide=True,
-                                                     debugging_mode=False)
+my_project/
+ │── app/
+ │    │── __init__.py
+ │    │── main.py
+ │    │── api/ 
+ │    │    │── __init__.py 
+ │    │    │── (기타 api 파일)
+ │── Dockerfile
+ │── poetry.lock
+ │── pyproject.toml
 ```
 
 # 함수 I/F 상세 설명
